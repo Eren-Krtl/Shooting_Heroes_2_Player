@@ -48,9 +48,11 @@ UpgradeUI = ExtResource("2_6bm6p")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=569623168]
 
 [node name="Player_1" parent="." unique_id=890126894 instance=ExtResource("1_1oj5k")]
+unique_name_in_owner = true
 position = Vector2(-343, 0)
 
 [node name="Player_2" parent="." unique_id=358499016 instance=ExtResource("2_yx7mw")]
+unique_name_in_owner = true
 position = Vector2(360, -39)
 
 [node name="P1Score" type="Label" parent="." unique_id=695297150]

@@ -10,14 +10,14 @@ config_version=5
 
 [application]
 
-config/name="pvp game"
+config/name="Shooting_Heroes_2_Player"
 run/main_scene="uid://bp02est832aq1"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-GlobalPlayer="*uid://cmjhku4bq5f7a"
+GlobalPlayer="*uid://0yol0jslaksq"
 
 [display]
 

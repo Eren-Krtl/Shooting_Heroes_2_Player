@@ -7,12 +7,21 @@ signal P2_LOST()
 @export var Bullet:PackedScene
 
 var Keys = {
-	"Up" = "P2_Up",
-	"Down" = "P2_Down",
-	"Left" = "P2_Left",
-	"Right" = "P2_Right",
-	"Shoot" = "P2_Shoot",
-	"Action" = "P2_Action"
+	"Up": "P2_Up",
+	"Down": "P2_Down",
+	"Left": "P2_Left",
+	"Right": "P2_Right",
+	"Shoot": "P2_Shoot",
+	"Action": "P2_Action"
+	}
+
+var BulletStats = {
+	"bullet": null,
+	"target": "P1",
+	"speed": GlobalPlayer.P2.BulletSpeed,
+	"damage": GlobalPlayer.P2.BulletDamage,
+	"repeat": GlobalPlayer.P2.BulletRepeat,
+	"spread": GlobalPlayer.P2.BulletSpread
 	}
 
 var HP:float = GlobalPlayer.P2.HP
@@ -27,10 +36,11 @@ var MoveVelocity:Vector2
 var SlideVelocity:Vector2
 
 func _ready() -> void:
+	BulletStats.bullet = Bullet
 	HPBar.max_value = GlobalPlayer.P2.HP
 
 func _physics_process(delta: float) -> void:
-	GlobalPlayer.movement_logic(self, %Sprite, GlobalPlayer.P2.Acceleration, GlobalPlayer.P2.MaxSpeed, Keys)
+	GlobalPlayer.movement_logic(self, %Sprite, GlobalPlayer.Nodes.P1, GlobalPlayer.P2.Acceleration, GlobalPlayer.P2.MaxSpeed, Keys)
 	shoot_logic()
 	hp_logic()
 
@@ -44,7 +54,7 @@ func _input(event: InputEvent) -> void:
 func shoot_logic() -> void:
 	if(CanShoot == true && IsShooting == true):
 		# -- Instantiate bullet --
-		GlobalPlayer.shoot_bullet(self, %Sprite, Bullet, "P1", GlobalPlayer.P2.BulletSpeed, GlobalPlayer.P2.BulletDamage, GlobalPlayer.P2.BulletRepeat, GlobalPlayer.P2.BulletSpread)
+		GlobalPlayer.shoot_bullet(self, %Sprite, BulletStats)
 		CanShoot = false
 		# -- Set the shoot timer wait time to match the cooldown --
 		ShootTimer.wait_time = GlobalPlayer.P2.BulletCooldown

@@ -5,6 +5,8 @@ extends StaticBody2D
 func _ready() -> void:
 	%P1Score.text = str(GlobalPlayer.P1.Score)
 	%P2Score.text = str(GlobalPlayer.P2.Score)
+	GlobalPlayer.Nodes.P1 = %Player_1
+	GlobalPlayer.Nodes.P2 = %Player_2
 	get_tree().paused = false
 
 func _on_player_2_p_2_lost() -> void:
