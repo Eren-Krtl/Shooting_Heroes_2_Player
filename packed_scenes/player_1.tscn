@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://vdf480vnrogi"]
+
+[ext_resource type="Script" uid="uid://dfloscs2gomtm" path="res://scripts/player_1_logic.gd" id="1_ve3sd"]
+[ext_resource type="PackedScene" uid="uid://ct4p40l7sq5fv" path="res://packed_scenes/bullet.tscn" id="2_4ni3a"]
+[ext_resource type="Texture2D" uid="uid://c6otgycx16xbd" path="res://sprites/tile_0136.png" id="3_jjt54"]
+[ext_resource type="Texture2D" uid="uid://c21e2casvhuxq" path="res://sprites/particle.png" id="4_jjt54"]
+
+[sub_resource type="Curve" id="Curve_y75q1"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.6076743), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yx7mw"]
+radius = 18.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_y75q1"]
+radius = 25.0
+
+[node name="Player_1" type="CharacterBody2D" unique_id=890126894]
+script = ExtResource("1_ve3sd")
+Bullet = ExtResource("2_4ni3a")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=366320988]
+unique_name_in_owner = true
+scale = Vector2(3, 3)
+texture = ExtResource("3_jjt54")
+
+[node name="JumpParticles" type="CPUParticles2D" parent="Sprite" unique_id=210286909]
+position = Vector2(6, 0)
+scale = Vector2(0.33333334, 0.33333334)
+emitting = false
+texture = ExtResource("4_jjt54")
+lifetime = 0.2
+one_shot = true
+explosiveness = 1.0
+spread = 90.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 50.0
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_y75q1")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=797628188 groups=["P1"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1862767063]
+shape = SubResource("CircleShape2D_yx7mw")
+
+[node name="ShootTimer" type="Timer" parent="." unique_id=2054225610]
+unique_name_in_owner = true
+wait_time = 0.5
+
+[node name="HPBar" type="ProgressBar" parent="." unique_id=1872658622]
+unique_name_in_owner = true
+modulate = Color(0, 0, 0, 1)
+offset_left = -24.0
+offset_top = 27.0
+offset_right = 19.0
+offset_bottom = 32.0
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
+[node name="Hitbox" type="CollisionShape2D" parent="." unique_id=1526775230]
+shape = SubResource("CircleShape2D_y75q1")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

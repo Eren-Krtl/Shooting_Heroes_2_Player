@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bnlptsnlb2tjb"]
+
+[ext_resource type="Script" uid="uid://buvhib0vdmht6" path="res://scripts/upgrade_button_logic.gd" id="1_v7of6"]
+
+[node name="UpgradeButton" type="Button" unique_id=774222688 groups=["UpgradeButton"]]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -982.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "Text"
+autowrap_mode = 3
+script = ExtResource("1_v7of6")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

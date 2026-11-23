@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://ct4p40l7sq5fv"]
+
+[ext_resource type="Script" uid="uid://x3wfga2kkuw7" path="res://scripts/bullet_logic.gd" id="1_v8qja"]
+[ext_resource type="Texture2D" uid="uid://dsa240lhq3x47" path="res://sprites/tile_0191.png" id="2_3ygqr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3ygqr"]
+radius = 4.0
+height = 10.0
+
+[node name="Bullet" type="CharacterBody2D" unique_id=836779665]
+script = ExtResource("1_v8qja")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1626925892]
+modulate = Color(0.905211, 0, 0.016229592, 1)
+texture = ExtResource("2_3ygqr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2041950802]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=977150604]
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_3ygqr")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
